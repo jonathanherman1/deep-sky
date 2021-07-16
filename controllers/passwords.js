@@ -27,7 +27,7 @@ async function create(req, res){
     try {
         req.body.owner = req.user.profile;
         await Password.create(req.body);
-        res.redirect('/passwords/new');   
+        res.redirect('/passwords');   
     } catch (error) {
         console.error(error);
         res.redirect('/passwords/new');
