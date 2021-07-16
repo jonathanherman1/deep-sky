@@ -17,9 +17,13 @@ import('./config/database.js')
 // load passport
 import('./config/passport.js')
 
+// custom middleware
+import * as middleware from './middleware/middleware.js';
+
 // require routes
 import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
+import { router as passwordsRouter } from './routes/passwords.js'
 
 // view engine setup
 app.set(
@@ -55,9 +59,14 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use(middleware.passUserToView)
+
 // router middleware
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+
+app.use(middleware.isLoggedIn)
+app.use('/passwords', passwordsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
