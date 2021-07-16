@@ -1,0 +1,15 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section id="view-all-passwords-section">
+    <a href="/passwords/new">Add Password</a>
+    <ul>
+      <% passwords.forEach(password => {  %> 
+          <li>
+              <a href="<%= password._id %>"> <%= password.name %> </a>
+          </li>
+      <% }) %> 
+    </ul>
+</section>
+
+<%- include('../partials/footer') %>

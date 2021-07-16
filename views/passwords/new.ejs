@@ -1,0 +1,25 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/passwords/new.css">
+<%- include('../partials/nav') %>
+<section id="add-password-section">
+    <h2>Add Password</h2>
+    <form action="/passwords" method="POST" id="add-password-form">
+        <label for="password-name-input">Name</label>
+        <input type="text" name="name" id="password-name-input" autocomplete="off" required>
+        
+        <label for="password-login-input">Login</label>
+        <input type="text" name="login" id="password-login-input" autocomplete="off" required>
+        
+        <label for="password-input">Password</label>
+        <input type="password" name="password" id="password-input" autocomplete="off" required>
+        
+        <!-- <label for="company-select">Company</label>
+        <select name="company" id="company-select">
+            <option value="Google" label="Google"></option>
+        </select> -->
+
+        <button type="submit">Save</button>
+    </form>
+</section>
+
+<%- include('../partials/footer') %>
