@@ -3,7 +3,8 @@ import { Password } from "../models/password.js";
 export {
     newPassword as new,
     create,
-    index
+    index,
+    show
 }
 
 async function index(req, res){
@@ -12,6 +13,19 @@ async function index(req, res){
         res.render('passwords/index', {
             title: 'Passwords',
             passwords
+        })
+    } catch (error) {
+        console.error(error);
+        res.redirect('/passwords');
+    }
+}
+
+async function show(req, res){
+    try {
+        const password = await Password.findById(req.params.id);
+        res.render('passwords/show', {
+            title: `${password.name}`,
+            password
         })
     } catch (error) {
         console.error(error);
