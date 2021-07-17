@@ -9,4 +9,5 @@ const router = Router();
 
 router.get('/', passwordsCtrl.index);
 router.get('/new', passwordsCtrl.new);
+router.get('/:id', passwordsCtrl.show);
 router.post('/', passwordsCtrl.create);
