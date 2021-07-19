@@ -69,6 +69,7 @@ async function create(req, res){
         let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
         req.body.password = ciphertext;
         delete req.body.masterPassword;
+        if(req.body.company === "") delete req.body.company;
         await Password.create(req.body);
         res.redirect('/passwords');   
     } catch (error) {
