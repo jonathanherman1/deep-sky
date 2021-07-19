@@ -5,8 +5,12 @@
 <body>
   <nav>
     <% if (user) { %>
+      <a href="/">Home</a>
+      <a href="/passwords/new">Add Password</a>
+      <a href="/passwords">View Passwords</a>
+      <a href="/companies/new">Add Company</a>
       <a href="/auth/logout">
-        <button type="submit">Logout</button>
+        Logout
       </a>
     <% } else { %>
       <a href="/auth/google" class="siwg-link">
