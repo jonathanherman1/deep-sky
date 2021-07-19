@@ -1,4 +1,5 @@
 import { Password } from "../models/password.js";
+import { Company } from '../models/company.js';
 import CryptoJS from "crypto-js";
 
 export {
@@ -24,9 +25,10 @@ async function index(req, res){
 
 async function show(req, res){
     try {
-        const password = await Password.findById(req.params.id);
+        const password = await Password.findById(req.params.id)
+          .populate('company');
         res.render('passwords/show', {
-            title: `${password.name}`,
+            title: `Password: ${password.name}`,
             password
         })
     } catch (error) {
@@ -35,15 +37,16 @@ async function show(req, res){
     }
 }
 
-function decrypt(req, res){
+async function decrypt(req, res){
     try {
         let bytes = CryptoJS.AES.decrypt(req.body.password, req.body.masterPassword);
         let decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
         if(decryptedPassword !== "") {
-            req.body.password = decryptedPassword;
+            const password = await Password.findById(req.params.id).populate('company');
+            password.password = decryptedPassword;
             res.render('passwords/show', {
-                title: 'Password',
-                password: req.body
+                title: `Password: ${req.body.name}`,
+                password
             })
         }
     } catch (err){
@@ -51,8 +54,9 @@ function decrypt(req, res){
     }
 }
 
-function newPassword(req, res){
-    res.render('passwords/new', {title: 'Add Password'});
+async function newPassword(req, res){
+    const companies = await Company.find({});
+    res.render('passwords/new', {title: 'Add Password', companies});
 }
 
 async function create(req, res){
