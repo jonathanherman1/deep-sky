@@ -7,7 +7,9 @@ export {
     create,
     index,
     show,
-    decrypt
+    decrypt,
+    edit,
+    update
 }
 
 async function index(req, res){
@@ -51,6 +53,7 @@ async function decrypt(req, res){
         }
     } catch (err){
         console.error(err);
+        res.redirect(`/passwords/${req.params.id}`);
     }
 }
 
@@ -71,4 +74,23 @@ async function create(req, res){
         console.error(error);
         res.redirect('/passwords/new');
     }
+}
+
+async function edit(req, res){
+    try {
+        const password = await Password.findById(req.params.id).populate('company');
+        const companies = await Company.find({_id: {$ne: password.company}});
+        res.render('passwords/edit', {
+            title: `Edit Password: ${req.params.id}`,
+            password,
+            companies
+        })   
+    } catch (error) {
+        console.error(error);
+        res.redirect(`/passwords/${req.params.id}`);
+    }
+}
+
+function update(req, res){
+    
 }

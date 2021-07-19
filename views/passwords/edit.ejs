@@ -6,7 +6,7 @@
     <a href="/passwords">Back to All Passwords</a>
     <a href="/passwords/<%= password._id %>/edit">Edit Password</a>
 
-    <form action="/passwords/<%= password._id %>/decrypt" method="POST" id="toggle-show-hide-form">
+    <form action="/passwords/<%= password._id %>?_method=PUT" method="POST" id="edit-password-form">
 
       <label for="password-name-input">Name</label>
       <input type="text" value="<%= password.name %>" name="name" id="password-name-input" autocomplete="off" required>
@@ -19,13 +19,18 @@
 
       <label for="company-select">Company</label>
       <select name="company" id="company-select">
-        <option value="<%= password.company._id %>"> <%= password.company.name %> </option>
+        <option value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
+        <% companies.forEach(company => {  %> 
+            <option value="<%= company._id %>">
+                <%= company.name %>
+            </option>
+        <% }) %> 
       </select>
 
       <p>Your master password is used for encryption and decryption and will <strong>not</strong> be uploaded to the database.</p>
       <label for="master-password-input">Master Password</label>
       <input type="password" name="masterPassword" id="master-password-input" autocomplete="off" required>
-      <button type="submit">Show Password</button>
+      <button type="submit">Update</button>
     </form>
 
 </section>
