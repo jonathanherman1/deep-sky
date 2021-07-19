@@ -5,3 +5,13 @@ section, form {
     align-items: center;
     font-size: 2rem;
 }
+
+.action-panel {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+button {
+    margin: 10px;
+}
