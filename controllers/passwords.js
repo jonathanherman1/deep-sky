@@ -91,6 +91,27 @@ async function edit(req, res){
     }
 }
 
-function update(req, res){
-    
+async function update(req, res){
+    try {
+        let password = await Password.findById(req.params.id);
+        if(password.owner.equals(req.user.profile._id)){
+            if(password.password === req.body.password){
+                delete req.body.masterPassword;
+                await password.update(req.body, {new: true});
+                res.redirect(`/passwords/${password._id}`);
+            } else {
+                let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
+                req.body.password = ciphertext;
+                delete req.body.masterPassword;
+                await password.update(req.body, {new: true});
+                res.redirect(`/passwords/${password._id}`);
+            }
+            
+        } else {
+            throw new Error(`Not authorized`);
+        }
+    } catch (error) {
+      console.error(error);
+      res.redirect('/passwords');
+    }
 }
