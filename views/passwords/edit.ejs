@@ -3,9 +3,6 @@
 <%- include('../partials/nav') %>
 
 <section id="view-one-password-section">
-    <a href="/passwords">Back to All Passwords</a>
-    <a href="/passwords/<%= password._id %>/edit">Edit Password</a>
-
     <form action="/passwords/<%= password._id %>?_method=PUT" method="POST" id="edit-password-form">
 
       <label for="password-name-input">Name</label>
