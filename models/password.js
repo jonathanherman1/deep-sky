@@ -6,7 +6,7 @@ export {
 
 const passwordSchema = new mongoose.Schema({
   name: {type: String, required: true},
-  password: {type: String, required: true},
+  password: {type: String, required: true, min: 4},
   login: {type: String, required: true},
   company: {type: mongoose.Schema.Types.ObjectId, 'ref': 'Company'},
   owner: {type: mongoose.Schema.Types.ObjectId, 'ref': 'Profile'}
