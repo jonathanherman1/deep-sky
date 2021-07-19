@@ -3,9 +3,6 @@
 <%- include('../partials/nav') %>
 
 <section id="view-one-password-section">
-    <a href="/passwords">Back to All Passwords</a>
-    <a href="/passwords/<%= password._id %>/edit">Edit Password</a>
-
     <form action="/passwords/<%= password._id %>/decrypt" method="POST" id="toggle-show-hide-form">
 
       <label for="password-name-input">Name</label>
@@ -27,6 +24,17 @@
       <input type="password" name="masterPassword" id="master-password-input" autocomplete="off" required>
       <button type="submit">Show Password</button>
     </form>
+
+
+    <div id="action-panel-btns" class="action-panel">
+      <form action="/passwords/<%= password._id %>/edit" method="GET">
+        <button type="submit">Edit</button>
+      </form>
+  
+      <form action="/passwords/<%= password._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
 
 </section>
 
