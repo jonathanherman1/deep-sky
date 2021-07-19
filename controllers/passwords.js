@@ -9,7 +9,8 @@ export {
     show,
     decrypt,
     edit,
-    update
+    update,
+    deletePassword as delete
 }
 
 async function index(req, res){
@@ -113,5 +114,20 @@ async function update(req, res){
     } catch (error) {
       console.error(error);
       res.redirect('/passwords');
+    }
+}
+
+async function deletePassword(req, res){
+    try {
+        let password = await Password.findById(req.params.id);
+        if(password.owner.equals(req.user.profile._id)){
+            await password.delete();
+            res.redirect('/passwords');
+        } else {
+            throw new Error('Not authorized');
+        }
+    } catch (error) {
+        console.error(error);
+        res.redirect('/passwords');
     }
 }

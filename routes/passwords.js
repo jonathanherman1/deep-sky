@@ -14,3 +14,4 @@ router.post('/:id/decrypt', passwordsCtrl.decrypt);
 router.get('/:id/edit', passwordsCtrl.edit);
 router.put('/:id', passwordsCtrl.update);
 router.post('/', passwordsCtrl.create);
+router.delete('/:id', passwordsCtrl.delete);
