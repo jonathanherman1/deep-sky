@@ -1,0 +1,16 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/companies/index.css">
+<%- include('../partials/nav') %>
+
+<section id="view-all-companies-section">
+    <a href="/companies/new">Add Company</a>
+    <ul>
+      <% companies.forEach(company => {  %> 
+          <li>
+              <a href="companies/<%= company._id %>"> <%= company.name %> </a>
+          </li>
+      <% }) %> 
+    </ul>
+</section>
+
+<%- include('../partials/footer') %>
