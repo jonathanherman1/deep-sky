@@ -2,8 +2,11 @@ import { Company } from '../models/company.js';
 
 export {
     index,
+    show,
     newCompany as new,
-    create
+    create,
+    update,
+    deleteCompany as delete
 }
 
 async function index(req, res){
@@ -15,6 +18,19 @@ async function index(req, res){
         })
     } catch (error) {
         console.error(error);
+    }
+}
+
+async function show(req, res){
+    try {
+        const company = await Company.findById(req.params.id)
+        res.render('companies/show', {
+            title: `Company: ${company.name}`,
+            company
+        })
+    } catch (error) {
+        console.error(error);
+        res.redirect('/companies');
     }
 }
 
@@ -30,5 +46,35 @@ async function create(req, res){
     } catch (error) {
         console.error(error);
         res.redirect('/companies/new');
+    }
+}
+
+async function update(req, res){
+    try {
+        let company = await Company.findById(req.params.id);
+        if(company.owner.equals(req.user.profile._id)){
+            await company.update(req.body, {new: true});
+            res.redirect(`/companies/${company._id}`); 
+        } else {
+            throw new Error(`Not authorized`);
+        }
+    } catch (error) {
+      console.error(error);
+      res.redirect('/companies');
+    }
+}
+
+async function deleteCompany(req, res){
+    try {
+        let company = await Company.findById(req.params.id);
+        if(company.owner.equals(req.user.profile._id)){
+            await company.delete();
+            res.redirect('/companies');
+        } else {
+            throw new Error('Not authorized');
+        }
+    } catch (error) {
+        console.error(error);
+        res.redirect('/companies');
     }
 }
