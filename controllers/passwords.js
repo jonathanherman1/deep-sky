@@ -5,7 +5,8 @@ export {
     newPassword as new,
     create,
     index,
-    show
+    show,
+    decrypt
 }
 
 async function index(req, res){
@@ -31,6 +32,22 @@ async function show(req, res){
     } catch (error) {
         console.error(error);
         res.redirect('/passwords');
+    }
+}
+
+function decrypt(req, res){
+    try {
+        let bytes = CryptoJS.AES.decrypt(req.body.password, req.body.masterPassword);
+        let decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
+        if(decryptedPassword !== "") {
+            req.body.password = decryptedPassword;
+            res.render('passwords/show', {
+                title: 'Password',
+                password: req.body
+            })
+        }
+    } catch (err){
+        console.error(err);
     }
 }
 
