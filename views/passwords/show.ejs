@@ -1,15 +1,27 @@
 <%- include('../partials/html-head') %>
-<link rel="stylesheet" href="/stylesheets/passwords/index.css">
+<link rel="stylesheet" href="/stylesheets/passwords/show.css">
 <%- include('../partials/nav') %>
 
 <section id="view-one-password-section">
     <a href="/passwords">Back to All Passwords</a>
-    <ul>
-      <li>id: <%= password._id %></li>
-      <li>name: <%= password.name %></li>
-      <li>login: <%= password.login %></li>
-      <li>password: <%= password.password %></li>
-    </ul>
+
+    <form action="/passwords/<%= password._id %>/decrypt" method="POST" id="toggle-show-hide-form">
+
+      <label for="password-name-input">Name</label>
+      <input type="text" value="<%= password.name %>" name="name" id="password-name-input" autocomplete="off" required>
+      
+      <label for="password-login-input">Login</label>
+      <input type="text" value="<%= password.login %>" name="login" id="password-login-input" autocomplete="off" required>
+      
+      <label for="password-input">Password</label>
+      <input type="text" value="<%= password.password %>" name="password" id="password-input" autocomplete="off" required>
+
+      <p>Your master password is used for encryption and decryption and will <strong>not</strong> be uploaded to the database.</p>
+      <label for="master-password-input">Master Password</label>
+      <input type="password" name="masterPassword" id="master-password-input" autocomplete="off" required>
+      <button type="submit">Show Password</button>
+    </form>
+
 </section>
 
 <%- include('../partials/footer') %>
