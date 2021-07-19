@@ -5,3 +5,7 @@ section, form {
     align-items: center;
     font-size: 2rem;
 }
+
+form * {
+    margin: 5px;
+}
