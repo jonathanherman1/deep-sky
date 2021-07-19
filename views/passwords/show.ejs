@@ -14,10 +14,12 @@
       <label for="password-input">Password</label>
       <input type="text" value="<%= password.password %>" name="password" id="password-input" autocomplete="off" required>
 
-      <label for="company-select">Company</label>
-      <select name="company" id="company-select">
-        <option value="<%= password.company._id %>"> <%= password.company.name %> </option>
-      </select>
+      <% if(!!password.company){ %> 
+        <label for="company-select">Company</label>
+        <select name="company" id="company-select">
+            <option value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
+        </select>
+      <% } %> 
 
       <p>Your master password is used for encryption and decryption and will <strong>not</strong> be uploaded to the database.</p>
       <label for="master-password-input">Master Password</label>

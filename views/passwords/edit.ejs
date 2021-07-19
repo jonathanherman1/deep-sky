@@ -16,7 +16,9 @@
 
       <label for="company-select">Company</label>
       <select name="company" id="company-select">
-        <option value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
+        <% if(!!password.company){ %> 
+          <option value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
+        <% } %> 
         <% companies.forEach(company => {  %> 
             <option value="<%= company._id %>">
                 <%= company.name %>
