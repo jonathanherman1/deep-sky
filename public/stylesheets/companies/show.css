@@ -9,8 +9,11 @@ section {
 section, form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+section {
+    justify-content: flex-start;
 }
 
 form {
@@ -73,8 +76,11 @@ button:hover {
     section, form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+    }
+
+    section {
+        justify-content: flex-start;
     }
     
     form {
@@ -132,8 +138,11 @@ button:hover {
     section, form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+    }
+
+    section {
+        justify-content: flex-start;
     }
     
     form {

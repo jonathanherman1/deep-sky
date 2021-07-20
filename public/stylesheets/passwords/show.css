@@ -9,8 +9,11 @@ section {
 section, form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+section {
+    justify-content: flex-start;
 }
 
 form {
@@ -94,8 +97,11 @@ button:hover {
     section, form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+    }
+
+    section {
+        justify-content: flex-start;
     }
     
     form {
@@ -144,7 +150,6 @@ button:hover {
 @media screen and (min-width: 1024px) {
      h2 {
         font-size: 2.4rem;
-        margin-top: 200px;
     }
     
     section {
@@ -154,8 +159,11 @@ button:hover {
     section, form {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+    }
+
+    section {
+        justify-content: flex-start;
     }
     
     form {
