@@ -1,8 +1,13 @@
 <%- include('../partials/html-head') %>
 <link rel="stylesheet" href="/stylesheets/passwords/new.css">
 <%- include('../partials/nav') %>
+
+<div class="header">
+    <h1>Add Password</h1>
+</div>
+
 <section id="add-password-section">
-    <h2>Add Password</h2>
+    
     <form action="/passwords" method="POST" id="add-password-form">
         <label for="password-name-input">Name</label>
         <input type="text" name="name" id="password-name-input" autocomplete="off" required>
