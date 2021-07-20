@@ -1,8 +1,12 @@
 <%- include('../partials/html-head') %>
 <link rel="stylesheet" href="/stylesheets/companies/new.css">
 <%- include('../partials/nav') %>
+
+<div class="header">
+    <h1>Add company</h1>
+</div>
+
 <section id="add-company-section">
-    <h2>Add company</h2>
     <form action="/companies" method="POST" id="add-company-form">
         <label for="company-name-input">Name</label>
         <input type="text" name="name" id="company-name-input" autocomplete="off" required>

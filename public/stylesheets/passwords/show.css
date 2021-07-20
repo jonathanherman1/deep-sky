@@ -1,17 +1,192 @@
+body {
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+section {
+    height: 100vh;
+}
+
 section, form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
 }
 
-.action-panel {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px;
+form {
+    background-color: var(--yale-blue);
+    width: calc(200px * 1.2);
+    border-radius: 5px;
+    font-size: 1.4rem;
+}
+
+label {
+    align-self: flex-start;
+    margin: calc(20px * 1.2) calc(15px * 1.2) calc(10px * 1.2) calc(25px * 1.2);
+}
+
+p {
+    align-self: flex-start;
+    margin: calc(20px * 1.2) calc(15px * 1.2) calc(0px * 1.2) calc(25px * 1.2);
+}
+
+input, select, textarea {
+    width: calc(150px * 1.2);
 }
 
 button {
-    margin: 10px;
+    height: calc(25px * 1.2);
+    width: calc(50px * 1.2);
+    margin: calc(10px * 1.2);
+    border: none;
+    background-color: var(--tyrian-purple);
+    color: var(--lavender-blush);
+    border-radius: 5px;
+    font-size: 1.4rem;
+}
+
+button:hover {
+    background-color: var(--yale-blue);
+    color: var(--cadet-grey);
+    cursor: pointer;
+}
+
+.master-password-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 0px 5px 5px;
+    margin-top: calc(20px * 1.2);
+    background-color: var(--flame);   
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+    
+    h1 {
+        font-size: 2.4rem;
+    }
+    
+    section {
+        height: 100vh;
+    }
+    
+    section, form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form {
+        background-color: var(--yale-blue);
+        width: calc(200px * 2);
+        border-radius: 5px;
+        font-size: 2rem;
+    }
+    
+    label {
+        align-self: flex-start;
+        margin: calc(20px * 2) calc(15px * 2) calc(10px * 2) calc(25px * 2);
+    }
+    
+    p {
+        align-self: flex-start;
+        margin: calc(20px * 2) calc(15px * 2) calc(0px * 2) calc(25px * 2);
+    }
+    
+    input, select, textarea {
+        width: calc(150px * 2);
+    }
+    
+    button {
+        height: calc(25px * 2);
+        width: calc(50px * 2);
+        margin: calc(10px *2);
+        border: none;
+        background-color: var(--tyrian-purple);
+        color: var(--lavender-blush);
+        border-radius: 5px;
+        font-size: 2rem;
+    }
+    
+    .master-password-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 0px 5px 5px;
+        margin-top: calc(20px * 2);
+        background-color: var(--flame);   
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+        overflow: hidden;
+    }
+    
+    h1 {
+        font-size: 2.4rem;
+    }
+    
+    section {
+        height: 100vh;
+    }
+    
+    section, form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form {
+        background-color: var(--yale-blue);
+        width: calc(200px * 2.4);
+        border-radius: 5px;
+        font-size: 2rem;
+    }
+    
+    label {
+        align-self: flex-start;
+        margin: calc(20px * 2.4) calc(15px * 2.4) calc(10px * 2.4) calc(25px * 2.4);
+    }
+    
+    p {
+        align-self: flex-start;
+        margin: calc(20px * 2.4) calc(15px * 2.4) calc(0px * 2.4) calc(25px * 2.4);
+    }
+    
+    input, select, textarea {
+        width: calc(150px * 2.4);
+    }
+    
+    button {
+        height: calc(25px * 2.4);
+        width: calc(50px * 2.4);
+        margin: calc(10px * 2);
+        border: none;
+        background-color: var(--tyrian-purple);
+        color: var(--lavender-blush);
+        border-radius: 5px;
+        font-size: 2rem;
+    }
+    
+    .master-password-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 0px 5px 5px;
+        margin-top: calc(20px * 2.4);
+        background-color: var(--flame);   
+    }
 }

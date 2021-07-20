@@ -3,6 +3,7 @@
 <%- include('../partials/nav') %>
 
 <section id="view-one-password-section">
+  <h1><%= password.name %></h1>
     <form action="/passwords/<%= password._id %>/decrypt" method="POST" id="toggle-show-hide-form">
 
       <label for="password-name-input">Name</label>

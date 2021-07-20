@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/companies/show.css">
 <%- include('../partials/nav') %>
 <section id="show-company-section">
-    <h2><%= company.name %></h2>
+    <h1><%= company.name %></h1>
     <form action="/companies/<%= company._id %>?_method=PUT" method="POST" id="show-edit-company-form">
         <label for="company-name-input">Name</label>
         <input type="text" value="<%= company.name %>" name="name" id="company-name-input" autocomplete="off" required>
