@@ -35,6 +35,7 @@ html {
 }
 
 body {
+  background-image: url('/assets/guille-pozzi-sbcIAn4Mn14-unsplash.jpg');
   background-color: var(--black);
   color: var(--lavender-blush);
   /* Use a system font, if none are available use an available sans-sarif font */
@@ -42,9 +43,6 @@ body {
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
   position: relative;
-  background-image: url('../assets/deep-sky-logo-2-photoshop\ 300dpi.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .header {
@@ -77,12 +75,12 @@ h1 {
   height: 100%;
   width: 300px;
   z-index: 100;
-  background-color: var(--tyrian-purple);
+  background: linear-gradient(var(--prussian-blue),var(--tyrian-purple));
 }
 
-.open {
-  transition: all 1s ease;
-}
+/* .open {
+  transition: all 0.5s ease;
+} */
 
 .logo-container {
   display: flex;
@@ -122,7 +120,7 @@ h1 {
 
 .hidden {
   margin: 0 0 0 -300px;
-  transition: all 1s ease;
+  /* transition: all 0.5s ease; */
 }
 
 .button-container {
@@ -139,7 +137,7 @@ h1 {
   justify-content: flex-end;
 }
 
-#offcanvas-toggle {
+#offcanvas-open {
   font-size: 2.4rem;
   color: var(--lavender-blush);
   position: absolute;
@@ -148,7 +146,7 @@ h1 {
   z-index: 1;
 }
 
-#offcanvas-toggle:hover {
+#offcanvas-open:hover {
   cursor: pointer;
   color: var(--flame)
 }

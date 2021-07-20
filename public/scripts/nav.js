@@ -1,19 +1,22 @@
-let hidden = true;
 const offcanvas = document.querySelector('#offcanvas');
-const offcanvasToggle = document.querySelector('#offcanvas-toggle');
+
+const offcanvasOpen = document.querySelector('#offcanvas-open');
 const offcanvasClose = document.querySelector('#offcanvas-close');
 
-offcanvasToggle.addEventListener('click', handleClick);
-offcanvasClose.addEventListener('click', handleClick);
+offcanvasOpen.addEventListener('click', handleOpen);
+offcanvasClose.addEventListener('click', handleClose);
 
-function handleClick(e){
-    if(hidden === true){
-        offcanvas.classList.add('open');
-        offcanvas.classList.remove('hidden');
-        hidden = false;
-    } else {
-        offcanvas.classList.remove('open');
-        offcanvas.classList.add('hidden');
-        hidden = true;
+function handleOpen(){
+    offcanvas.classList.remove('hidden');
+    offcanvas.classList.add('animate__slideInLeft');
+    if(offcanvas.classList.contains('animate__slideOutLeft')){
+        offcanvas.classList.remove('animate__slideOutLeft');
     }
+}
+
+function handleClose(){
+    if(offcanvas.classList.contains('animate__slideInLeft')){
+        offcanvas.classList.remove('animate__slideInLeft');
+    }
+    offcanvas.classList.add('animate__slideOutLeft');
 }

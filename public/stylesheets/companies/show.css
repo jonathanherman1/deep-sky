@@ -28,7 +28,7 @@ label {
     margin: calc(20px * 1.2) calc(15px * 1.2) calc(10px * 1.2) calc(25px * 1.2);
 }
 
-p {
+form p {
     align-self: flex-start;
     margin: calc(20px * 1.2) calc(15px * 1.2) calc(0px * 1.2) calc(25px * 1.2);
 }
