@@ -1,5 +1,5 @@
 html {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 /* The Universal Selector */
@@ -35,7 +35,12 @@ html {
 }
 
 body {
-  background-image: url('/assets/guille-pozzi-sbcIAn4Mn14-unsplash.jpg');
+  background: url('/assets/guille-pozzi-sbcIAn4Mn14-unsplash.jpg') no-repeat center center fixed;
+  background-repeat: no-repeat; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-color: var(--black);
   color: var(--lavender-blush);
   /* Use a system font, if none are available use an available sans-sarif font */

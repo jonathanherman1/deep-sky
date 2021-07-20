@@ -21,6 +21,8 @@ Secure vault for your digital life.
 
 ## Credits
 
+### Software
+
 [CryptoJS](https://github.com/brix/crypto-js/blob/develop/LICENSE) License used under [The MIT License (MIT)](http://opensource.org/licenses/MIT)
 
 Copyright (c) 2009-2013 Jeff Mott  
@@ -43,3 +45,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+### Assets
+
+- Photo by <a href="https://unsplash.com/@guillepozzi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">guille pozzi</a> on <a href="https://unsplash.com/s/photos/night-sky?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+- Photo by <a href="https://unsplash.com/@jdiegoph?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Diego PH</a> on <a href="https://unsplash.com/s/photos/night-sky?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
