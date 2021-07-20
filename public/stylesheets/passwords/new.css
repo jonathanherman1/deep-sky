@@ -1,11 +1,29 @@
+h1 {
+    font-size: 2.4rem;
+}
+
+section {
+    height: 100vh;
+}
+
 section, form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
 }
 
-form * {
-    margin: 5px;
+form {
+    background-color: var(--yale-blue);
+    width: 200px;
+    border-radius: 5px;
+}
+
+label, p {
+    align-self: flex-start;
+    margin: 20px 0px 10px 25px;
+}
+
+input, select {
+    width: 150px;
 }
