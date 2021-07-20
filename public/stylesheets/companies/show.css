@@ -50,8 +50,8 @@ button {
 }
 
 button:hover {
-    background-color: var(--yale-blue);
-    color: var(--cadet-grey);
+    background-color: var(--black);
+    color: var(--lavender-blush);
     cursor: pointer;
 }
 
