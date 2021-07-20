@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/passwords/new.css">
 <%- include('../partials/nav') %>
 
-<div class="header">
+<div class="header fixed">
     <h1>Add Password</h1>
 </div>
 
@@ -26,11 +26,13 @@
             <% }) %>
         </select>
 
-        <p>Your master password is used for encryption and will <strong>not</strong> be uploaded.</p>
-        <label for="master-password-input">Master Password</label>
-        <input type="password" name="masterPassword" id="master-password-input" autocomplete="off" required>
+        <div class="master-password-block">
+            <p>Your master password is used for encryption and will <strong>not</strong> be uploaded.</p>
+            <label for="master-password-input">Master Password</label>
+            <input type="password" name="masterPassword" id="master-password-input" autocomplete="off" required>
 
-        <button type="submit">Save</button>
+            <button type="submit">Save</button>
+        </div>
     </form>
 </section>
 
