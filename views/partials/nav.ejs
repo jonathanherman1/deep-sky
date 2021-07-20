@@ -3,21 +3,31 @@
   <% } %>
 </head>
 <body>
-  <nav>
-    <% if (user) { %>
-      <a href="/">Home</a>
-      <a href="/passwords/new">Add Password</a>
-      <a href="/passwords">View Passwords</a>
-      <a href="/companies/new">Add Company</a>
-      <a href="/companies">View Companies</a>
-      <a href="/auth/logout">
-        Logout
-      </a>
-    <% } else { %>
-      <a href="/auth/google" class="siwg-link">
-        <button type="submit" class="siwg">
-          <img id="siwg-image" alt="Sign in with Google" />
-        </button>
-      </a>
-    <% } %>
-  </nav>
+  <div class="offcanvas hidden" id="offcanvas">
+    <div class="button-container-end">
+      <i class="far fa-window-close fa-2x" id="offcanvas-close"></i>
+    </div>
+      <% if (user) { %>
+      <nav class="signed-in">
+        <a href="/">Home</a>
+        <a href="/passwords/new">Add Password</a>
+        <a href="/passwords">View Passwords</a>
+        <a href="/companies/new">Add Company</a>
+        <a href="/companies">View Companies</a>
+        <a href="/auth/logout">
+          Logout
+        </a>
+      </nav>
+      <% } else { %>
+      <nav class="signed-out">
+        <div class="button-container">
+          <a href="/auth/google" class="siwg-link">
+            <button type="submit" class="siwg">
+              <img id="siwg-image" alt="Sign in with Google" />
+            </button>
+          </a>
+        </div>
+      </nav>
+      <% } %>
+  </div>
+  <i class="fas fa-bars" id="offcanvas-toggle"></i>
