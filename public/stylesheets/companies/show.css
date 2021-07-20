@@ -1,4 +1,4 @@
-h1 {
+h2 {
     font-size: 2.4rem;
 }
 
@@ -51,18 +51,18 @@ button:hover {
     cursor: pointer;
 }
 
-.master-password-block {
+.delete {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 0px 0px 5px 5px;
-    margin-top: calc(20px * 1.2);
-    background-color: var(--flame);   
+    margin-top: -5px;
+    background-color: var(--dark-red);   
 }
 
 @media screen and (min-width: 768px) {
-    h1 {
+    h2 {
         font-size: 2.4rem;
     }
     
@@ -106,22 +106,22 @@ button:hover {
         background-color: var(--tyrian-purple);
         color: var(--lavender-blush);
         border-radius: 5px;
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
     
-    .master-password-block {
+    .delete {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: 0px 0px 5px 5px;
-        margin-top: calc(20px * 2);
-        background-color: var(--flame);   
+        margin-top: -5px;
+        background-color: var(--dark-red);   
     }
 }
 
 @media screen and (min-width: 1024px) {
-    h1 {
+    h2 {
         font-size: 2.4rem;
     }
     
@@ -140,7 +140,7 @@ button:hover {
         background-color: var(--yale-blue);
         width: calc(200px * 2.4);
         border-radius: 5px;
-        font-size: 2rem;
+        font-size: 2.4rem;
     }
     
     label {
@@ -168,13 +168,13 @@ button:hover {
         font-size: 2rem;
     }
     
-    .master-password-block {
+    .delete {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         border-radius: 0px 0px 5px 5px;
-        margin-top: calc(20px * 2.4);
-        background-color: var(--flame);   
+        margin-top: -5px;
+        background-color: var(--dark-red);   
     }
 }

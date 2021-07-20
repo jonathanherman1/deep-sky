@@ -1,4 +1,4 @@
-h1 {
+h2 {
     font-size: 2.4rem;
 }
 
@@ -35,14 +35,14 @@ input, select, textarea {
 }
 
 button {
-    height: calc(25px * 1.2);
-    width: calc(50px * 1.2);
+    height: calc(25px * 1.6);
+    width: calc(50px * 1.8);
     margin: calc(10px * 1.2);
     border: none;
     background-color: var(--tyrian-purple);
     color: var(--lavender-blush);
     border-radius: 5px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 button:hover {
@@ -61,9 +61,30 @@ button:hover {
     background-color: var(--flame);   
 }
 
+.edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: var(--yale-blue);   
+}
+
+.delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--dark-red);   
+}
+
 @media screen and (min-width: 768px) {
-    h1 {
+    h2 {
         font-size: 2.4rem;
+
     }
     
     section {
@@ -99,14 +120,14 @@ button:hover {
     }
     
     button {
-        height: calc(25px * 2);
-        width: calc(50px * 2);
-        margin: calc(10px *2);
+        height: calc(25px * 2.4);
+        width: calc(50px * 2.4);
+        margin: calc(10px * 2.4);
         border: none;
         background-color: var(--tyrian-purple);
         color: var(--lavender-blush);
         border-radius: 5px;
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
     
     .master-password-block {
@@ -121,8 +142,9 @@ button:hover {
 }
 
 @media screen and (min-width: 1024px) {
-     h1 {
+     h2 {
         font-size: 2.4rem;
+        margin-top: 200px;
     }
     
     section {
@@ -140,7 +162,7 @@ button:hover {
         background-color: var(--yale-blue);
         width: calc(200px * 2.4);
         border-radius: 5px;
-        font-size: 2rem;
+        font-size: 2.4rem;
     }
     
     label {
@@ -160,7 +182,7 @@ button:hover {
     button {
         height: calc(25px * 2.4);
         width: calc(50px * 2.4);
-        margin: calc(10px * 2);
+        margin: calc(10px * 2.4);
         border: none;
         background-color: var(--tyrian-purple);
         color: var(--lavender-blush);

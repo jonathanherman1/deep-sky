@@ -22,10 +22,11 @@
     </form>
 
     <div id="action-panel-btns" class="action-panel">    
-        <form action="/companies/<%= company._id %>?_method=DELETE" method="POST">
+        <form action="/companies/<%= company._id %>?_method=DELETE" method="POST" class="delete">
+          <p>This action cannot currently be undone.</p>
           <button type="submit">Delete</button>
         </form>
-      </div>
+    </div>
 
 </section>
 
