@@ -1,8 +1,13 @@
 <%- include('../partials/html-head') %>
 <link rel="stylesheet" href="/stylesheets/companies/show.css">
 <%- include('../partials/nav') %>
+
+<div class="header">
+  <h1>Company</h1>
+</div>
+
 <section id="show-company-section">
-    <h1><%= company.name %></h1>
+    <h2><%= company.name %></h2>
     <form action="/companies/<%= company._id %>?_method=PUT" method="POST" id="show-edit-company-form">
         <label for="company-name-input">Name</label>
         <input type="text" value="<%= company.name %>" name="name" id="company-name-input" autocomplete="off" required>

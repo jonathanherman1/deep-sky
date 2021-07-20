@@ -2,8 +2,12 @@
 <link rel="stylesheet" href="/stylesheets/passwords/show.css">
 <%- include('../partials/nav') %>
 
+<div class="header">
+  <h1>Password</h1>
+</div>
+
 <section id="view-one-password-section">
-  <h1><%= password.name %></h1>
+  <h2><%= password.name %></h2>
     <form action="/passwords/<%= password._id %>/decrypt" method="POST" id="toggle-show-hide-form">
 
       <label for="password-name-input">Name</label>
