@@ -8,6 +8,15 @@ Secure vault for your digital life.
 
 ## Technologies Used
 
+- JavaScript
+- HTML
+- CSS
+- EJS
+- NodeJS
+- Express
+- MongoDB
+- Mongoose
+
 ## Next Steps
 
 ## Credits
