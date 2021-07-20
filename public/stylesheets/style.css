@@ -14,26 +14,40 @@ html {
 /* resets font size to be 62.5% of the user preference - 
      in most browser configurations this will be 10px */
 :root {
-    font-size: 62.5%
+    font-size: 62.5%;
+    --black: #000000;
+    --flame: #cf5c36;
+    --lavender-blush: #eee5e9;
+    --gray-web: #7c7c7c;
+    --gold-crayola: #efc88b;
+    --rich-black-fogra-29: #161925;
+    --prussian-blue: #23395b;
+    --queen-blue: #406e8e;
+    --cadet-grey: #8ea8c3;
+    --light-cyan: #cbf7ed;
+
+
+    --saffron: #e3b505;
+    --dark-red: #95190c;
+    --tyrian-purple: #610345;
+    --teal: #107e7d;
+    --yale-blue: #044b7f;
 }
 
 body {
-  background-color: gray;
+  background-color: var(--black);
+  color: var(--lavender-blush);
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
+  position: relative;
 }
 
-nav {
-  background-color: white;
-  font-size: 1.6rem;
+.header {
   display: flex;
   justify-content: center;
-}
-
-nav * {
-  margin: 5px;
+  align-items: center;
 }
 
 main {
@@ -45,4 +59,84 @@ main {
 
 h1 {
   font-size: 3.6rem;
+}
+
+.offcanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  z-index: 100;
+  background-color: var(--tyrian-purple);
+}
+
+.open {
+  transition: all 2s ease;
+}
+
+.signed-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 2.4rem;
+  z-index: 500;
+}
+
+
+.signed-in a {
+  color: var(--lavender-blush);
+  margin: 20px 0px 0px 20px;
+  text-decoration: none;
+}
+
+.signed-in a:hover {
+  color: var(--cadet-grey);
+}
+
+.hidden {
+  margin: 0 0 0 -300px;
+  transition: all 1s ease;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.button-container-end {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#offcanvas-toggle {
+  font-size: 2.4rem;
+  color: var(--lavender-blush);
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 1;
+}
+
+#offcanvas-toggle:hover {
+  cursor: pointer;
+  color: var(--flame)
+}
+
+#offcanvas-close {
+  margin: 10px;
+}
+
+#offcanvas-close:hover {
+  cursor: pointer;
+  color: var(--flame)
+}
+
+#avatar {
+  border-radius: 50%;
 }
