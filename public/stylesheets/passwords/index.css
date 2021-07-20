@@ -1,7 +1,43 @@
+body {
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
 section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    height: 100vh;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--lavender-blush);
+    height: 100px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.7rem;
+    margin: 10px;
+}
+
+.card:hover {
+    background-color: var(--tyrian-purple);
+    color: var(--cadet-grey);
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (min-width: 1024px) {
+    
 }

@@ -2,15 +2,17 @@
 <link rel="stylesheet" href="/stylesheets/companies/index.css">
 <%- include('../partials/nav') %>
 
-<section id="view-all-companies-section">
+<div class="header">
     <h1>Companies</h1>
-    <ul>
-      <% companies.forEach(company => {  %> 
-          <li>
-              <a href="companies/<%= company._id %>"> <%= company.name %> </a>
-          </li>
-      <% }) %> 
-    </ul>
-</section>
+</div>
 
+<section id="view-all-companies-section">
+      <% companies.forEach(company => {  %>
+        <form action="companies/<%= company._id %>">
+            <button type="submit" class="card">
+                <%= company.name %>
+            </button>
+        </form>
+      <% }) %> 
+</section>
 <%- include('../partials/footer') %>

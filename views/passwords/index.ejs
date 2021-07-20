@@ -2,15 +2,17 @@
 <link rel="stylesheet" href="/stylesheets/passwords/index.css">
 <%- include('../partials/nav') %>
 
-<section id="view-all-passwords-section">    
+<div class="header">
     <h1>Passwords</h1>
-    <ul>
+</div>
+<section id="view-all-passwords-section">    
       <% passwords.forEach(password => {  %> 
-          <li>
-              <a href="passwords/<%= password._id %>"> <%= password.name %> </a>
-          </li>
+        <form action="passwords/<%= password._id %>">
+            <button type="submit" class="card">
+                <%= password.name %>
+            </button>
+        </form>
       <% }) %> 
-    </ul>
 </section>
 
 <%- include('../partials/footer') %>
