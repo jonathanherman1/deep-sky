@@ -75,8 +75,8 @@ async function deleteCompany(req, res){
     try {
         let company = await Company.findById(req.params.id);
         if(company.owner.equals(req.user.profile._id)){
-            const match = await Password.find({}).where('company').equals(company._id).limit(1);
-            if(match) {
+            const matchArray = await Password.find({}).where('company').equals(company._id).limit(1);
+            if(matchArray.length === 1) {
                 throw new Error('Cannot delete company: has references');
             } else {
                 await company.delete();
