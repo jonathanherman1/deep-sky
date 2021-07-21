@@ -7,22 +7,29 @@
 </div>
 
 <section id="add-password-section">
-    
     <form action="/passwords" method="POST" id="add-password-form">
         <label for="password-name-input">Name</label>
-        <input type="text" name="name" id="password-name-input" autocomplete="off" required>
+        <input type="text" value="<%= namePrev %>" name="name" id="password-name-input" autocomplete="off" required>
         
         <label for="password-login-input">Login</label>
-        <input type="text" name="login" id="password-login-input" autocomplete="off" required>
+        <input type="text" value="<%= loginPrev %>" name="login" id="password-login-input" autocomplete="off" required>
         
         <label for="password-input">Password</label>
-        <input type="password" name="password" id="password-input" autocomplete="off" minlength="4", required>
+        <input type="password" value="<%= passwordPrev %>" name="password" id="password-input" autocomplete="off" minlength="4", required>
 
         <label for="company-select-add">Company</label>
         <select name="company" id="company-select-add">
-            <option value=""></option>
-            <% companies.forEach(company => { %>
-            <option value="<%= company._id %>"> <%= company.name %> </option>
+            <!-- if there was an error, put the previous info back for the user's convenience (all EJS injections suffixed with 'Prev') -->
+            <% if(error){ %> 
+                <option value=""></option>
+                <option value="<%= companyPrev %>" selected> <%= companyNamePrev %> </option>    
+            <% } else { %> 
+                <option value="" selected></option>
+            <% } companies.forEach(company => { %>
+                <!-- remove the duplicate company listing -->
+                <% if(company.name !== companyNamePrev) { %> 
+                    <option value="<%= company._id %>"> <%= company.name %> </option>
+                <% } %> 
             <% }) %>
         </select>
 
@@ -34,6 +41,9 @@
             <button type="submit">Save</button>
         </div>
     </form>
+
+    <%- include('../partials/error') %> 
+
 </section>
 
 <%- include('../partials/footer') %>

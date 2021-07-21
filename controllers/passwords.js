@@ -1,6 +1,7 @@
 import { Password } from "../models/password.js";
 import { Company } from '../models/company.js';
 import CryptoJS from "crypto-js";
+import querystring from 'querystring';
 
 export {
     newPassword as new,
@@ -21,7 +22,7 @@ async function index(req, res){
             passwords
         })
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect('/passwords');
     }
 }
@@ -35,7 +36,7 @@ async function show(req, res){
             password
         })
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect('/passwords');
     }
 }
@@ -51,30 +52,57 @@ async function decrypt(req, res){
                 title: `Password: ${req.body.name}`,
                 password
             })
+        } else {
+            res.redirect(`/passwords/${req.params.id}`);
         }
     } catch (err){
-        console.error(err);
+        console.log(err);
         res.redirect(`/passwords/${req.params.id}`);
     }
 }
 
 async function newPassword(req, res){
     const companies = await Company.find({});
-    res.render('passwords/new', {title: 'Add Password', companies});
+    res.render('passwords/new', {
+        title: 'Add Password', 
+        companies,
+        error: req.query.error, 
+        namePrev: req.query.name,
+        loginPrev: req.query.login,
+        passwordPrev: req.query.password,
+        companyPrev: req.query.companyId,
+        companyNamePrev: req.query.companyName
+    });
 }
 
 async function create(req, res){
     try {
-        req.body.owner = req.user.profile;
-        let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
-        req.body.password = ciphertext;
-        delete req.body.masterPassword;
-        if(req.body.company === "") delete req.body.company;
-        await Password.create(req.body);
-        res.redirect('/passwords');   
+        let result = await isMasterPasswordCorrect(req.body.masterPassword);
+        console.log("isMasterPassword RESULT!!! ", result);
+        if(result.isMasterPasswordCorrect === true) {
+            req.body.owner = req.user.profile;
+            let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
+            req.body.password = ciphertext;
+            delete req.body.masterPassword;
+            if(req.body.company === "") delete req.body.company;
+            await Password.create(req.body);
+            res.redirect('/passwords'); 
+        } else {
+            res.redirect('/passwords/new');
+        }
     } catch (error) {
-        console.error(error);
-        res.redirect('/passwords/new');
+        console.log(error);
+        let company = await Company.findById(req.body.company);
+        let companyName = company.name;
+        const query = querystring.stringify({
+            'error': `${error.name}: ${error.message}`,
+            'name': req.body.name,
+            'login': req.body.login,
+            'password': req.body.password,
+            'companyId': req.body.company,
+            'companyName': companyName
+        });
+        res.redirect(`/passwords/new/?${query}`);
     }
 }
 
@@ -85,10 +113,16 @@ async function edit(req, res){
         res.render('passwords/edit', {
             title: `Edit Password: ${req.params.id}`,
             password,
-            companies
+            companies,
+            error: req.query.error, 
+            namePrev: req.query.name,
+            loginPrev: req.query.login,
+            passwordPrev: req.query.password,
+            companyPrev: req.query.companyId,
+            companyNamePrev: req.query.companyName
         })   
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect(`/passwords/${req.params.id}`);
     }
 }
@@ -97,27 +131,42 @@ async function update(req, res){
     try {
         let password = await Password.findById(req.params.id);
         if(password.owner.equals(req.user.profile._id)){
-            if(req.body.company === '') {
-                req.body.company = null;
-            }
-            if(password.password === req.body.password){
-                delete req.body.masterPassword;
-                await password.updateOne(req.body, {new: true, omitUndefined: true});
-                res.redirect(`/passwords/${password._id}`);
+            let result = await isMasterPasswordCorrect(req.body.masterPassword);
+            if(result.isMasterPasswordCorrect === true) {
+                if(req.body.company === '') {
+                    req.body.company = null;
+                }
+                if(password.password === req.body.password){
+                    delete req.body.masterPassword;
+                    await password.updateOne(req.body, {new: true, omitUndefined: true});
+                    res.redirect(`/passwords/${password._id}`);
+                } else {
+                    let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
+                    req.body.password = ciphertext;
+                    delete req.body.masterPassword;
+                    await password.updateOne(req.body, {new: true});
+                    res.redirect(`/passwords/${password._id}`);
+                }
             } else {
-                let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
-                req.body.password = ciphertext;
-                delete req.body.masterPassword;
-                await password.updateOne(req.body, {new: true});
-                res.redirect(`/passwords/${password._id}`);
-            }
-            
+                res.redirect(`/passwords/${password._id}/edit`);
+            }            
         } else {
+            res.redirect(`/passwords/${password._id}`);
             throw new Error(`Not authorized`);
         }
     } catch (error) {
-      console.error(error);
-      res.redirect('/passwords');
+      console.log(error);
+      let company = await Company.findById(req.body.company);
+      let companyName = company.name;
+      const query = querystring.stringify({
+          'error': `${error.name}: ${error.message}`,
+          'name': req.body.name,
+          'login': req.body.login,
+          'password': req.body.password,
+          'companyId': req.body.company,
+          'companyName': companyName
+      });
+      res.redirect(`/passwords/${req.params.id}/edit/?${query}`);
     }
 }
 
@@ -131,7 +180,40 @@ async function deletePassword(req, res){
             throw new Error('Not authorized');
         }
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect('/passwords');
+    }
+}
+
+function decryptHelper(passwordToDecrypt, masterPassword){
+    let bytes = CryptoJS.AES.decrypt(passwordToDecrypt, masterPassword);
+    return bytes.toString(CryptoJS.enc.Utf8);
+}
+
+async function isMasterPasswordCorrect(attemptedMasterPassword){
+    try {
+        let firstPasswordArray = await Password.find({}).sort('createdAt').limit(1);
+        console.log("first password array: ", firstPasswordArray);
+        console.log("first password array length: ", firstPasswordArray.length);
+        if(firstPasswordArray.length === 0){
+            return {isMasterPasswordCorrect: true};
+        } else {
+            let firstPassword = firstPasswordArray[0].password;
+            console.log("first pass word: ", firstPassword)
+            let decryptedPassword = decryptHelper(firstPassword, attemptedMasterPassword);
+            console.log("decrypted password: ", decryptedPassword)
+            if(decryptedPassword === "") {
+                return {isMasterPasswordCorrect: false}
+            } else {
+                return {isMasterPasswordCorrect: true};
+            }
+        }   
+    } catch (error) {
+        console.log("isMasterPasswordCorrect ERROR: ", error);
+        return {
+            isMasterPasswordCorrect: false,
+            errorName: error.name,
+            errorMessage: error.message
+        }
     }
 }
