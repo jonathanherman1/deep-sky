@@ -1,0 +1,11 @@
+<% if(error) { %> 
+  <div class="error-container animate__animated animate__fadeIn">
+    <div class="button-container-end">
+      <i class="fas fa-times" id="close-error-div-btn"></i>
+    </div>
+    <div class="error" data-error="<%= error %>">
+      <%= error %>
+    </div>
+  </div>
+<script src="/scripts/error-handling/animateErrorBox.js"></script>
+<% } %>
