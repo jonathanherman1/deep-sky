@@ -16,6 +16,7 @@ html {
 :root {
     font-size: 62.5%;
     --black: #000000;
+    --gray: #1a1a1a;
     --flame: #cf5c36;
     --lavender-blush: #eee5e9;
     --gray-web: #7c7c7c;
@@ -26,22 +27,22 @@ html {
     --cadet-grey: #8ea8c3;
     --light-cyan: #cbf7ed;
 
-
     --saffron: #e3b505;
     --dark-red: #95190c;
     --tyrian-purple: #610345;
     --teal: #107e7d;
     --yale-blue: #044b7f;
+
+    --color-hunt-purple1: #6F0765;
+    --color-hunt-purple2:#4C0045;
+    --color-hunt-orange:#BD512F;
+    --color-hunt-yellowgold:#FFB228;
 }
 
 body {
-  background: url('/assets/guille-pozzi-sbcIAn4Mn14-unsplash.jpg') no-repeat center center fixed;
-  background-repeat: no-repeat; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: linear-gradient(var(--black),var(--prussian-blue)) no-repeat;
   background-size: cover;
-  background-color: var(--black);
+  height: 100vh;
   color: var(--lavender-blush);
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -80,7 +81,7 @@ h1 {
   height: 100%;
   width: 300px;
   z-index: 100;
-  background: linear-gradient(var(--prussian-blue),var(--tyrian-purple));
+  background: var(--gray);
 }
 
 /* .open {
