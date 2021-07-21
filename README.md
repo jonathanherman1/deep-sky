@@ -4,6 +4,9 @@ Secure vault for your digital life.
 
 ## Getting Started
 
+1. [Launch the app](https://deep-sky-falcon.herokuapp.com/)
+2. Create, read, update, and delete passwords and companies.
+
 ## Screenshots
 
 ## Technologies Used
