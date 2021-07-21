@@ -19,6 +19,8 @@ Secure vault for your digital life.
 
 ## Next Steps
 
+[View the backlog on Trello board](https://trello.com/b/97UdxPgj/ga-sei-unit-2-project-deep-sky)
+
 ## Credits
 
 ### Software
