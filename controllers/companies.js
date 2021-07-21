@@ -18,7 +18,7 @@ async function index(req, res){
             companies
         })
     } catch (error) {
-        console.error(error);
+        console.log(error);
     }
 }
 
@@ -36,7 +36,7 @@ async function show(req, res){
             error: req.query.error
         })
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect('/companies');
     }
 }
@@ -51,7 +51,7 @@ async function create(req, res){
         await Company.create(req.body);
         res.redirect('/companies');
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect('/companies/new');
     }
 }
@@ -66,7 +66,7 @@ async function update(req, res){
             throw new Error(`Not authorized`);
         }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       res.redirect('/companies');
     }
 }
@@ -86,7 +86,7 @@ async function deleteCompany(req, res){
             throw new Error('Not authorized');
         }
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.redirect(`/companies/${req.params.id}/?error=invalidDelete`);
     }
 }
