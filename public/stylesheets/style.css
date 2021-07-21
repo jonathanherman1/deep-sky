@@ -40,14 +40,15 @@ html {
 }
 
 body {
-  background: linear-gradient(var(--black),var(--prussian-blue)) no-repeat;
+  background: linear-gradient(var(--black), var(--prussian-blue), var(--yale-blue)) no-repeat;
+  background-color: var( --yale-blue);
   background-size: cover;
-  height: 100vh;
+  height: 100vmin;
   color: var(--lavender-blush);
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  margin: 0;
+  margin: 0px;
   position: relative;
 }
 

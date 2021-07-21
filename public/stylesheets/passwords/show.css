@@ -81,7 +81,8 @@ button:hover {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    background-color: var(--dark-red);   
+    background-color: var(--dark-red);
+    margin-bottom: 5px;
 }
 
 @media screen and (min-width: 768px) {
