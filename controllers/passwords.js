@@ -97,15 +97,18 @@ async function update(req, res){
     try {
         let password = await Password.findById(req.params.id);
         if(password.owner.equals(req.user.profile._id)){
+            if(req.body.company === '') {
+                req.body.company = null;
+            }
             if(password.password === req.body.password){
                 delete req.body.masterPassword;
-                await password.update(req.body, {new: true});
+                await password.updateOne(req.body, {new: true, omitUndefined: true});
                 res.redirect(`/passwords/${password._id}`);
             } else {
                 let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
                 req.body.password = ciphertext;
                 delete req.body.masterPassword;
-                await password.update(req.body, {new: true});
+                await password.updateOne(req.body, {new: true});
                 res.redirect(`/passwords/${password._id}`);
             }
             

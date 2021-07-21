@@ -18,11 +18,12 @@
       <select name="company" id="company-select">
         <% if(!!password.company){ %> 
           <option value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
-        <% } %> 
-        <% companies.forEach(company => {  %> 
-            <option value="<%= company._id %>">
+        <% } %>
+        <option value=""></option>
+        <% companies.forEach(company => {  %>   
+          <option value="<%= company._id %>">
                 <%= company.name %>
-            </option>
+          </option>
         <% }) %> 
       </select>
 
