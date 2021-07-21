@@ -170,3 +170,26 @@ h1 {
 #avatar {
   border-radius: 50%;
 }
+
+.error-container {
+  position: absolute;
+  z-index: 1000;
+  height: 150px;
+  width: 250px;
+  background-color: var(--lavender-blush);
+  color: var(--dark-red);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+#close-error-div-btn {
+  cursor: pointer;
+  padding: 10px;
+}
