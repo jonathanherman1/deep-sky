@@ -21,7 +21,7 @@ section {
 
 .card:hover {
     background-color: var(--tyrian-purple);
-    color: var(--cadet-grey);
+    color: var(--lavender-blush);
     border: none;
     cursor: pointer;
 }
