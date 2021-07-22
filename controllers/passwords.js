@@ -33,7 +33,8 @@ async function show(req, res){
           .populate('company');
         res.render('passwords/show', {
             title: `Password: ${password.name}`,
-            password
+            password,
+            error: req.query.error, 
         })
     } catch (error) {
         console.log(error);
@@ -43,21 +44,26 @@ async function show(req, res){
 
 async function decrypt(req, res){
     try {
-        let bytes = CryptoJS.AES.decrypt(req.body.password, req.body.masterPassword);
-        let decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-        if(decryptedPassword !== "") {
+        let result = await isMasterPasswordCorrect(req.body.masterPassword);
+        if(result.isMasterPasswordCorrect === true) {
             const password = await Password.findById(req.params.id).populate('company');
+            let decryptedPassword = decryptHelper(password.password, req.body.masterPassword);
             password.password = decryptedPassword;
             res.render('passwords/show', {
                 title: `Password: ${req.body.name}`,
-                password
+                password,
+                error: null
             })
         } else {
-            res.redirect(`/passwords/${req.params.id}`);
+            throw new Error(result.errorMessage);
         }
     } catch (error){
         console.log(error);
-        res.redirect(`/passwords/${req.params.id}`);
+        let queryObj = {
+            'error': `${error.name}: ${error.message}`,
+        }
+        const query = querystring.stringify(queryObj);
+        res.redirect(`/passwords/${req.params.id}/?${query}`);
     }
 }
 
@@ -87,7 +93,6 @@ async function create(req, res){
             await Password.create(req.body);
             res.redirect('/passwords'); 
         } else {
-            // throw new Error('Incorrect master password. Please try entering it again.');
             throw new Error(result.errorMessage);
         }
     } catch (error) {
