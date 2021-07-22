@@ -79,7 +79,7 @@ async function create(req, res){
     try {
         let result = await isMasterPasswordCorrect(req.body.masterPassword);
         console.log("isMasterPassword RESULT!!! ", result);
-        if(result === true) {
+        if(result.isMasterPasswordCorrect === true) {
             req.body.owner = req.user.profile;
             let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
             req.body.password = ciphertext;
@@ -88,7 +88,8 @@ async function create(req, res){
             await Password.create(req.body);
             res.redirect('/passwords'); 
         } else {
-            throw new Error('Incorrect master password. Please try entering it again.');
+            // throw new Error('Incorrect master password. Please try entering it again.');
+            throw new Error(result.errorMessage);
         }
     } catch (error) {
         console.log(error);
@@ -138,7 +139,7 @@ async function update(req, res){
         let password = await Password.findById(req.params.id);
         if(password.owner.equals(req.user.profile._id)){
             let result = await isMasterPasswordCorrect(req.body.masterPassword);
-            if(result === true) {
+            if(result.isMasterPasswordCorrect === true) {
                 if(req.body.company === '') {
                     req.body.company = null;
                 }
@@ -202,19 +203,24 @@ async function isMasterPasswordCorrect(attemptedMasterPassword){
         console.log("first password array: ", firstPasswordArray);
         console.log("first password array length: ", firstPasswordArray.length);
         if(firstPasswordArray.length === 0){
-            return true;
+            return {isMasterPasswordCorrect: true};
         } else {
             let firstPassword = firstPasswordArray[0].password;
             console.log("first pass word: ", firstPassword)
             let decryptedPassword = decryptHelper(firstPassword, attemptedMasterPassword);
             console.log("decrypted password: ", decryptedPassword)
             if(decryptedPassword === "") {
-                return false;
+                throw new Error('Incorrect master password. Please try entering it again.');
             } else {
-                return true;
+                return {isMasterPasswordCorrect: true};
             }
         }   
     } catch (error) {
         console.log("isMasterPasswordCorrect ERROR: ", error);
+        return {
+            isMasterPasswordCorrect: false,
+            errorName: error.name,
+            errorMessage: error.message
+        }
     }
 }
