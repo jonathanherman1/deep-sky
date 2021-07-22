@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/passwords/new.css">
 <%- include('../partials/nav') %>
 
-<div class="header fixed">
+<div class="header">
     <h1>Add Password</h1>
 </div>
 
@@ -15,7 +15,7 @@
         <input type="text" value="<%= loginPrev %>" name="login" id="password-login-input" autocomplete="off" required>
         
         <label for="password-input">Password</label>
-        <input type="text" value="" name="password" id="password-input" autocomplete="off" minlength="4", required>
+        <input type="password" value="" name="password" id="password-input" autocomplete="off" minlength="4", required>
 
         <label for="company-select-add">Company</label>
         <select name="company" id="company-select-add">
