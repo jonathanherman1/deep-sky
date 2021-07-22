@@ -116,15 +116,17 @@ async function edit(req, res){
     try {
         const password = await Password.findById(req.params.id).populate('company');
         const companies = await Company.find({_id: {$ne: password.company}});
+        // allow user to keep their edits if they submit the wrong master password
+        // does not save to database
+        if(req.query.name) password.name = req.query.name;
+        if(req.query.login) password.login = req.query.login;
+        if(req.query.companyId) password.company_id = req.query.companyId;
+        if(req.query.companyName) password.company.name = req.query.companyName;
         res.render('passwords/edit', {
             title: `Edit Password: ${req.params.id}`,
             password,
             companies,
-            error: req.query.error, 
-            namePrev: req.query.name,
-            loginPrev: req.query.login,
-            companyPrev: req.query.companyId,
-            companyNamePrev: req.query.companyName
+            error: req.query.error
         })   
     } catch (error) {
         console.log(error);
@@ -153,7 +155,7 @@ async function update(req, res){
                     res.redirect(`/passwords/${password._id}`);
                 }
             } else {
-                res.redirect(`/passwords/${password._id}/edit`);
+                throw new Error(result.errorMessage);
             }            
         } else {
             res.redirect(`/passwords/${password._id}`);
@@ -161,16 +163,17 @@ async function update(req, res){
         }
     } catch (error) {
       console.log(error);
-      let company = await Company.findById(req.body.company);
-      let companyName = company.name;
-      const query = querystring.stringify({
-          'error': `${error.name}: ${error.message}`,
-          'name': req.body.name,
-          'login': req.body.login,
-          'password': req.body.password,
-          'companyId': req.body.company,
-          'companyName': companyName
-      });
+      let queryObj = {
+        'error': `${error.name}: ${error.message}`,
+        'name': req.body.name,
+        'login': req.body.login,
+      }
+      if(req.body.company) {
+        let company = await Company.findById(req.body.company);
+        queryObj.companyId = String(company._id);
+        queryObj.companyName = company.name;
+      }
+      const query = querystring.stringify(queryObj);
       res.redirect(`/passwords/${req.params.id}/edit/?${query}`);
     }
 }
