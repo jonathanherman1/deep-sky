@@ -15,22 +15,22 @@
         <input type="text" value="<%= loginPrev %>" name="login" id="password-login-input" autocomplete="off" required>
         
         <label for="password-input">Password</label>
-        <input type="password" value="" name="password" id="password-input" autocomplete="off" minlength="4", required>
+        <input type="text" value="" name="password" id="password-input" autocomplete="off" minlength="4", required>
 
         <label for="company-select-add">Company</label>
         <select name="company" id="company-select-add">
             <!-- if there was an error, put the previous info back for the user's convenience (all EJS injections suffixed with 'Prev') -->
             <% if(error){ %>
-                <% if(companyPrev?.length === undefined || companyPrev?.length === 0) { %> 
+                <% if(!companyIdPrev) { %> 
                     <option value=""></option>
                 <% } else { %>
                     <option value=""></option>
-                    <option value="<%= companyPrev %>" selected> <%= companyNamePrev %> </option>    
+                    <option value="<%= companyIdPrev %>" selected> <%= companyNamePrev %> </option>    
                 <% } %> 
             <% } else { %> 
                 <option value="" selected></option>
+            <!-- remove the duplicate company listing and fill with rest of company list-->
             <% } companies.forEach(company => { %>
-                <!-- remove the duplicate company listing -->
                 <% if(company.name !== companyNamePrev) { %> 
                     <option value="<%= company._id %>"> <%= company.name %> </option>
                 <% } %> 
