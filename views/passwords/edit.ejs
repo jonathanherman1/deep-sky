@@ -2,7 +2,12 @@
 <link rel="stylesheet" href="/stylesheets/passwords/show.css">
 <%- include('../partials/nav') %>
 
+<div class="header">
+  <h1>Edit Password</h1>
+</div>
+
 <section id="view-one-password-section">
+    <h2><%= password.name %></h2>
     <form action="/passwords/<%= password._id %>?_method=PUT" method="POST" id="edit-password-form">
 
       <label for="password-name-input">Name</label>
