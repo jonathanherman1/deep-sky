@@ -79,7 +79,7 @@ Check out the [package.json](package.json) for dependencies.
 
 ### Software
 
-#### [CryptoJS](#cryptojs) 
+#### [CryptoJS](#cryptojsnpmpackage) 
 
 https://github.com/brix/crypto-js/blob/develop/LICENSE
 
