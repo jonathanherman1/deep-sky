@@ -1,4 +1,5 @@
 <%- include('./partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/passwords/index.css">
 <%- include('./partials/nav') %>
 
 <div class="header">
@@ -6,8 +7,9 @@
 </div>
 
 <main>
-  <h3>Welcome, <%= user ? user.profile.name : "friend" %>.</h3>
+  <h3>Welcome to <em>Falcon</em>, <%= user ? user.profile.name : "friend" %>.</h3>
   <% if (user?.profile.avatar) { %>
+    <p>Where to in the deep sky?</p>
     <div>
       <img 
         src="<%= user.profile.avatar %>" 
@@ -15,7 +17,64 @@
         id="avatar"
       >
     </div>
-  <% } %>
+
+    <% if(passwords.length === 0){ %>
+          <section class="no-data">
+            <h2>You have no passwords yet.</h2>
+            <form action="/passwords/new" method="GET">
+              <button id="add-password-btn-home">
+                Add Password
+              </button>
+            </form>
+          </section>
+    <% } else { %>
+          <div class="header">
+            <h2>Passwords</h2>
+          </div>
+
+          <form action="/passwords/new" method="GET">
+            <button id="add-password-btn-home">
+              Add Password
+            </button>
+          </form>
+          
+          <section id="view-all-passwords-section">    
+                <% passwords.forEach(password => {  %> 
+                  <form action="passwords/<%= password._id %>">
+                      <button type="submit" class="card">
+                          <%= password.name %>
+                      </button>
+                  </form>
+                <% }) %> 
+          </section>
+    <% } %> 
+
+
+
+
+  <% } else { %>
+
+    <section class="intro">
+      <p>Our world is filled with adversaries.</p>
+      <p>In the past, security meant a lock on a steel box, a weapon, or even a fortress.</p>
+      <p>Today, we are more connected than ever, and the challenges to protecting our information are everywhere.</p>
+      <p>We must communicate securely to survive.</p>
+      <p>Come aboard <em>Falcon</em>, your spaceship, inspired and rooted in earth's fastest creature.</p>
+      <p>As you hurtle through the darkness in the vastness of the <em>deep sky</em>, we wish you bon voyage - and may no one ever catch your secrets.</p>
+      <h3>The universe has secrets. So do you.</h3>
+    </section>
+
+    <nav class="signed-out">
+      <div class="button-container">
+        <a href="/auth/google" class="siwg-link">
+          <button type="submit" class="siwg">
+            <img id="siwg-image" alt="Sign in with Google" />
+          </button>
+        </a>
+      </div>
+    </nav>
+    
+  <% } %> 
 </main>
 
 <%- include('./partials/footer') %>
