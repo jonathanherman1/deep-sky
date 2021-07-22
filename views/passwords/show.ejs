@@ -11,18 +11,18 @@
     <form action="/passwords/<%= password._id %>/decrypt" method="POST" id="toggle-show-hide-form">
 
       <label for="password-name-input">Name</label>
-      <input type="text" value="<%= password.name %>" name="name" id="password-name-input" autocomplete="off" required>
+      <input type="text" value="<%= password.name %>" name="name" id="password-name-input" autocomplete="off" required disabled>
       
       <label for="password-login-input">Login</label>
-      <input type="text" value="<%= password.login %>" name="login" id="password-login-input" autocomplete="off" required>
+      <input type="text" value="<%= password.login %>" name="login" id="password-login-input" autocomplete="off" required disabled>
       
       <label for="password-input">Password</label>
-      <input type="text" value="<%= password.password %>" name="password" id="password-input" autocomplete="off" required>
+      <input type="text" value="<%= password.password %>" name="password" id="password-input" autocomplete="off" required disabled>
 
       <% if(!!password.company){ %> 
         <label for="company-select">Company</label>
-        <select name="company" id="company-select">
-            <option value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
+        <select name="company" id="company-select" disabled>
+            <option disabled value="<%= password.company._id %>" selected> <%= password.company.name %> </option>
         </select>
       <% } %> 
 
