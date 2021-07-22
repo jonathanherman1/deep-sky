@@ -20,9 +20,13 @@
         <label for="company-select-add">Company</label>
         <select name="company" id="company-select-add">
             <!-- if there was an error, put the previous info back for the user's convenience (all EJS injections suffixed with 'Prev') -->
-            <% if(error){ %> 
-                <option value=""></option>
-                <option value="<%= companyPrev %>" selected> <%= companyNamePrev %> </option>    
+            <% if(error){ %>
+                <% if(companyPrev?.length === undefined) { %> 
+                    <option value=""></option>
+                <% } else { %>
+                    <option value=""></option>
+                    <option value="<%= companyPrev %>" selected> <%= companyNamePrev %> </option>    
+                <% } %> 
             <% } else { %> 
                 <option value="" selected></option>
             <% } companies.forEach(company => { %>
