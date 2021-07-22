@@ -9,6 +9,8 @@ Secure vault for your digital life.
 
 ## Screenshots
 
+
+
 ## Technologies Used
 
 - JavaScript
