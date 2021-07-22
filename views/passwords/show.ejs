@@ -1,5 +1,6 @@
 <%- include('../partials/html-head') %>
 <link rel="stylesheet" href="/stylesheets/passwords/show.css">
+<script defer src="/scripts/disabledFlipper.js"></script>
 <%- include('../partials/nav') %>
 
 <div class="header">
@@ -32,7 +33,7 @@
           Master Password
         </label>
         <input type="password" name="masterPassword" id="master-password-input" autocomplete="off" required>
-        <button type="submit">Show Password</button>
+        <button type="submit" id="show-password-btn">Show Password</button>
       </div>
     </form>
 
