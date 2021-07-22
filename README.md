@@ -1,6 +1,6 @@
-# [Deep Sky](https://deep-sky-falcon.herokuapp.com/)
+<a href="https://deep-sky-falcon.herokuapp.com/" target="_blank"> <h1>Deep Sky</h1> </a>
 
-[![Deep Sky Falcon logo](public/assets/logos/deep-sky-logo-2-photoshop%20300dpi-small.png)](https://deep-sky-falcon.herokuapp.com/)
+<a href="https://deep-sky-falcon.herokuapp.com/" target="_blank">![Deep Sky Falcon logo](public/assets/logos/deep-sky-logo-2-photoshop%20300dpi-small.png)</a>
 
 Welcome to *Falcon*, friend.
 
@@ -48,7 +48,7 @@ Deep Sky is a secure vault for your digital life. The current app supports stori
 
 ## Features
 
-- [AES-256 encryption](README.md#cryptojs)
+- [AES-256 encryption](#npm-package-crypto-js)
 - Mobile and dark mode-first design
 - MVC architecture
 - Google OAuth authentication
@@ -69,21 +69,19 @@ Deep Sky is a secure vault for your digital life. The current app supports stori
 - PassportJS
 - Google OAuth
 
-Check out the [package.json](package.json) for dependencies.
+Check out the [package.json](package.json) for full list of dependencies.
 
 ## Next Steps
 
-[View the backlog on Trello board](https://trello.com/b/97UdxPgj/ga-sei-unit-2-project-deep-sky)
+<a href="https://trello.com/b/97UdxPgj/ga-sei-unit-2-project-deep-sky" target="_blank">View the backlog on Trello board</a>
 
 ## Credits
 
 ### Software
 
-#### [CryptoJS](#cryptojsnpmpackage) 
+<a href="https://www.npmjs.com/package/crypto-js" target="_blank"><h4 id="npm-package-crypto-js">CryptoJS</h4></a>
 
-https://github.com/brix/crypto-js/blob/develop/LICENSE
-
-License used under [The MIT License (MIT)](http://opensource.org/licenses/MIT)
+<a href="https://github.com/brix/crypto-js/blob/develop/LICENSE" target="_blank">License</a> used under [The MIT License (MIT)](http://opensource.org/licenses/MIT)
 
 Copyright (c) 2009-2013 Jeff Mott  
 Copyright (c) 2013-2016 Evan Vosberg
