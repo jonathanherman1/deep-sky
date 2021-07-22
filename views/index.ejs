@@ -7,11 +7,15 @@
 </div>
 
 <main>
-  <h3>Welcome to <em>Falcon</em>, <%= user ? user.profile.name : "friend" %>.</h3>
+  <div class="logo-container">
+    <img src="/assets/logos/deep-sky-logo-2-photoshop 300dpi.png" alt="Deep Sky Logo" class="deep-sky-logo animate__animated animate__bounceInRight">
+  </div>
+  <h3 class="animate__animated animate__bounceInRight">Welcome to <em>Falcon</em>, <%= user ? user.profile.name : "friend" %>.</h3>
   <% if (user?.profile.avatar) { %>
-    <p>Where to in the deep sky?</p>
+    <p class="animate__animated animate__fadeIn">Where to in the deep sky?</p>
     <div>
       <img 
+        class="animate__animated animate__fadeIn"
         src="<%= user.profile.avatar %>" 
         alt="<%= user.profile.name %> avatar"
         id="avatar"
@@ -55,13 +59,13 @@
   <% } else { %>
 
     <section class="intro">
-      <p>Our world is filled with adversaries.</p>
-      <p>In the past, security meant a lock on a steel box, a weapon, or even a fortress.</p>
-      <p>Today, we are more connected than ever, and the challenges to protecting our information are everywhere.</p>
-      <p>We must communicate securely to survive.</p>
-      <p>Come aboard <em>Falcon</em>, your spaceship, inspired and rooted in earth's fastest creature.</p>
-      <p>As you hurtle through the darkness in the vastness of the <em>deep sky</em>, we wish you bon voyage - and may no one ever catch your secrets.</p>
-      <h3>The universe has secrets. So do you.</h3>
+      <p class="animate__animated animate__bounceInRight">Our world is filled with adversaries.</p>
+      <p class="animate__animated animate__bounceInLeft">In the past, security meant a lock on a steel box, a weapon, or even a fortress.</p>
+      <p class="animate__animated animate__bounceInRight">Today, we are more connected than ever, and the challenges to protecting our information are everywhere.</p>
+      <p class="animate__animated animate__bounceInLeft">We must communicate securely to survive.</p>
+      <p class="animate__animated animate__bounceInRight">Come aboard <em>Falcon</em>, your spaceship, inspired and rooted in earth's fastest creature.</p>
+      <p class="animate__animated animate__bounceInLeft">As you hurtle through the darkness in the vastness of the <em>deep sky</em>, we wish you bon voyage - and may no one ever catch your secrets.</p>
+      <h3 class="animate__animated animate__fadeIn">The universe has secrets. So do you.</h3>
     </section>
 
     <nav class="signed-out">

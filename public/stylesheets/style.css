@@ -43,7 +43,7 @@ body {
   background: linear-gradient(var(--black), var(--prussian-blue), var(--yale-blue)) no-repeat;
   background-color: var( --yale-blue);
   background-size: cover;
-  height: 100vmin;
+  height: 100vh;
   color: var(--lavender-blush);
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
