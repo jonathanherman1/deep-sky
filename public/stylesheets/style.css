@@ -75,6 +75,34 @@ h1 {
   font-size: 3rem;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+.intro {
+  height: 370px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.no-data {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .offcanvas {
   position: fixed;
   top: 0;
@@ -142,6 +170,23 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+button {
+  height: calc(25px * 1.6);
+  width: calc(50px * 1.8);
+  margin: calc(10px * 1.2);
+  border: none;
+  background-color: var(--tyrian-purple);
+  color: var(--lavender-blush);
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+button:hover {
+  background-color: var(--black);
+  color: var(--lavender-blush);
+  cursor: pointer;
 }
 
 #offcanvas-open {
