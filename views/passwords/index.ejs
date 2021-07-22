@@ -5,14 +5,32 @@
 <div class="header">
     <h1>Passwords</h1>
 </div>
-<section id="view-all-passwords-section">    
-      <% passwords.forEach(password => {  %> 
-        <form action="passwords/<%= password._id %>">
-            <button type="submit" class="card">
-                <%= password.name %>
+
+
+<% if(passwords.length === 0){ %>
+    <section class="no-data">
+      <h2>You have no passwords yet.</h2>
+      <form action="/passwords/new" method="GET">
+        <button id="add-password-btn-home">
+          Add Password
+        </button>
+      </form>
+    </section>
+<% } else { %>
+    <section id="view-all-passwords-section">
+        <form action="/passwords/new" method="GET">
+            <button id="add-password-btn-home">
+              Add Password
             </button>
-        </form>
-      <% }) %> 
-</section>
+          </form>    
+        <% passwords.forEach(password => {  %> 
+            <form action="passwords/<%= password._id %>">
+                <button type="submit" class="card">
+                    <%= password.name %>
+                </button>
+            </form>
+        <% }) %> 
+    </section>
+<% } %> 
 
 <%- include('../partials/footer') %>
