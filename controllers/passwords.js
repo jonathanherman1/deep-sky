@@ -79,27 +79,33 @@ async function create(req, res){
     try {
         let result = await isMasterPasswordCorrect(req.body.masterPassword);
         console.log("isMasterPassword RESULT!!! ", result);
-        if(result.isMasterPasswordCorrect === true) {
+        if(result === true) {
             req.body.owner = req.user.profile;
             let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
             req.body.password = ciphertext;
             delete req.body.masterPassword;
-            if(req.body.company === "") delete req.body.company;
+            if(req.body.company === "" || req.body.company === undefined || req.body.company === null) delete req.body.company;
             await Password.create(req.body);
             res.redirect('/passwords'); 
         } else {
-            res.redirect('/passwords/new');
+            throw new Error('Incorrect master password. Please try entering it again.');
         }
     } catch (error) {
         console.log(error);
-        let company = await Company.findById(req.body.company);
-        let companyName = company.name;
+        let companyId;
+        let companyName;
+        if(req.body.company) {
+            console.log("INSIDE MAN: ", req.body.company)
+            company = await Company.findById(req.body.company);
+            companyId = company._id;
+            companyName = company.name;
+        }
         const query = querystring.stringify({
             'error': `${error.name}: ${error.message}`,
             'name': req.body.name,
             'login': req.body.login,
             'password': req.body.password,
-            'companyId': req.body.company,
+            'companyId': companyId,
             'companyName': companyName
         });
         res.redirect(`/passwords/new/?${query}`);
@@ -132,7 +138,7 @@ async function update(req, res){
         let password = await Password.findById(req.params.id);
         if(password.owner.equals(req.user.profile._id)){
             let result = await isMasterPasswordCorrect(req.body.masterPassword);
-            if(result.isMasterPasswordCorrect === true) {
+            if(result === true) {
                 if(req.body.company === '') {
                     req.body.company = null;
                 }
@@ -196,24 +202,19 @@ async function isMasterPasswordCorrect(attemptedMasterPassword){
         console.log("first password array: ", firstPasswordArray);
         console.log("first password array length: ", firstPasswordArray.length);
         if(firstPasswordArray.length === 0){
-            return {isMasterPasswordCorrect: true};
+            return true;
         } else {
             let firstPassword = firstPasswordArray[0].password;
             console.log("first pass word: ", firstPassword)
             let decryptedPassword = decryptHelper(firstPassword, attemptedMasterPassword);
             console.log("decrypted password: ", decryptedPassword)
             if(decryptedPassword === "") {
-                return {isMasterPasswordCorrect: false}
+                return false;
             } else {
-                return {isMasterPasswordCorrect: true};
+                return true;
             }
         }   
     } catch (error) {
         console.log("isMasterPasswordCorrect ERROR: ", error);
-        return {
-            isMasterPasswordCorrect: false,
-            errorName: error.name,
-            errorMessage: error.message
-        }
     }
 }
