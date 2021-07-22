@@ -6,7 +6,23 @@
     <h1>Companies</h1>
 </div>
 
+
+<% if(companies.length === 0){ %>
+    <section class="no-data">
+      <h2>You have no companies yet.</h2>
+      <form action="/companies/new" method="GET">
+        <button id="add-company-btn">
+          Add Company
+        </button>
+      </form>
+    </section>
+<% } else { %>
 <section id="view-all-companies-section">
+    <form action="/companies/new" method="GET">
+        <button id="add-company-btn">
+          Add Company
+        </button>
+      </form>
       <% companies.forEach(company => {  %>
         <form action="companies/<%= company._id %>">
             <button type="submit" class="card">
@@ -15,4 +31,5 @@
         </form>
       <% }) %> 
 </section>
+<% } %> 
 <%- include('../partials/footer') %>
