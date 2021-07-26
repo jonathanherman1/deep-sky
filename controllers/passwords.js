@@ -17,7 +17,6 @@ export {
 async function index(req, res){
     try {
         const passwords = await Password.find({owner: req.user.profile._id});
-        console.log("PASSWORDS: ", passwords);
         res.render('passwords/index', {
             title: 'Passwords',
             passwords
@@ -30,13 +29,15 @@ async function index(req, res){
 
 async function show(req, res){
     try {
-        const password = await Password.findById(req.params.id)
+      const password = await Password.findById(req.params.id)
           .populate('company');
+      if(password.owner.equals(req.user.profile._id)){
         res.render('passwords/show', {
             title: `Password: ${password.name}`,
             password,
             error: req.query.error, 
         })
+      }
     } catch (error) {
         console.log(error);
         res.redirect('/passwords');
@@ -45,9 +46,10 @@ async function show(req, res){
 
 async function decrypt(req, res){
     try {
-        let result = await isMasterPasswordCorrect(req.body.masterPassword, req);
-        if(result.isMasterPasswordCorrect === true) {
-            const password = await Password.findById(req.params.id).populate('company');
+        const password = await Password.findById(req.params.id).populate('company');
+        if(password.owner.equals(req.user.profile._id)){ 
+          let result = await isMasterPasswordCorrect(req.body.masterPassword, req);
+          if(result.isMasterPasswordCorrect === true) {
             let decryptedPassword = decryptHelper(password.password, req.body.masterPassword);
             password.password = decryptedPassword;
             res.render('passwords/show', {
@@ -55,6 +57,7 @@ async function decrypt(req, res){
                 password,
                 error: null
             })
+          }
         } else {
             throw new Error(result.errorMessage);
         }
@@ -115,8 +118,9 @@ async function create(req, res){
 
 async function edit(req, res){
     try {
-        const password = await Password.findById(req.params.id).populate('company');
-        const companies = await Company.find({_id: {$ne: password.company}});
+      const password = await Password.findById(req.params.id).populate('company');
+      const companies = await Company.find({_id: {$ne: password.company}});
+      if(password.owner.equals(req.user.profile._id)){ 
         // allow user to keep their edits if they submit the wrong master password
         // does not save to database
         if(req.query.name) password.name = req.query.name;
@@ -129,6 +133,7 @@ async function edit(req, res){
             companies,
             error: req.query.error
         })   
+      }
     } catch (error) {
         console.log(error);
         res.redirect(`/passwords/${req.params.id}`);
