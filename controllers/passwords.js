@@ -16,8 +16,8 @@ export {
 
 async function index(req, res){
     try {
-        const passwords = await Password.find({})
-          .where('owner').equals(req.user.profile._id);
+        const passwords = await Password.find({owner: req.user.profile._id});
+        console.log("PASSWORDS: ", passwords);
         res.render('passwords/index', {
             title: 'Passwords',
             passwords
@@ -45,7 +45,7 @@ async function show(req, res){
 
 async function decrypt(req, res){
     try {
-        let result = await isMasterPasswordCorrect(req.body.masterPassword);
+        let result = await isMasterPasswordCorrect(req.body.masterPassword, req);
         if(result.isMasterPasswordCorrect === true) {
             const password = await Password.findById(req.params.id).populate('company');
             let decryptedPassword = decryptHelper(password.password, req.body.masterPassword);
@@ -84,7 +84,7 @@ async function newPassword(req, res){
 
 async function create(req, res){
     try {
-        let result = await isMasterPasswordCorrect(req.body.masterPassword);
+        let result = await isMasterPasswordCorrect(req.body.masterPassword, req);
         if(result.isMasterPasswordCorrect === true) {
             req.body.owner = req.user.profile;
             let ciphertext = CryptoJS.AES.encrypt(req.body.password, req.body.masterPassword).toString();
@@ -139,7 +139,7 @@ async function update(req, res){
     try {
         let password = await Password.findById(req.params.id);
         if(password.owner.equals(req.user.profile._id)){
-            let result = await isMasterPasswordCorrect(req.body.masterPassword);
+            let result = await isMasterPasswordCorrect(req.body.masterPassword, req);
             if(result.isMasterPasswordCorrect === true) {
                 if(req.body.company === '') {
                     req.body.company = null;
@@ -199,9 +199,9 @@ function decryptHelper(passwordToDecrypt, masterPassword){
     return bytes.toString(CryptoJS.enc.Utf8);
 }
 
-async function isMasterPasswordCorrect(attemptedMasterPassword){
+async function isMasterPasswordCorrect(attemptedMasterPassword, req){
     try {
-        let firstPasswordArray = await Password.find({}).sort('createdAt').limit(1);
+        let firstPasswordArray = await Password.find({owner: req.user.profile._id}).sort('createdAt').limit(1);
         if(firstPasswordArray.length === 0){
             return {isMasterPasswordCorrect: true};
         } else {
