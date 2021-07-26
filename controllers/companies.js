@@ -12,7 +12,7 @@ export {
 
 async function index(req, res){
     try {
-        const companies = await Company.find({});
+        const companies = await Company.find({owner: req.user.profile._id});
         res.render('companies/index', {
             title: 'Companies',
             companies
@@ -24,7 +24,8 @@ async function index(req, res){
 
 async function show(req, res){
     try {
-        const company = await Company.findById(req.params.id)
+      const company = await Company.findById(req.params.id)
+      if(company.owner.equals(req.user.profile._id)){
         console.log(req.query.error)
         if(req.query.error === 'invalidDelete') {
             req.query.error = 'Cannot delete company: has references'
@@ -35,6 +36,7 @@ async function show(req, res){
             company, 
             error: req.query.error
         })
+      }
     } catch (error) {
         console.log(error);
         res.redirect('/companies');
