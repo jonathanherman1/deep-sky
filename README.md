@@ -48,7 +48,7 @@ Deep Sky is a secure vault for your digital life. The current app supports stori
 
 ## Features
 
-- [AES-256 encryption](#npm-package-crypto-js)
+- AES-256 encryption
 - Mobile and dark mode-first design
 - MVC architecture
 - Google OAuth authentication
@@ -71,38 +71,8 @@ Deep Sky is a secure vault for your digital life. The current app supports stori
 
 Check out the [package.json](package.json) for full list of dependencies.
 
+[Google Slides Presentation](https://docs.google.com/presentation/d/142vM1uzHUFYpI90HmPZgswbu0zUGP-fPzu4wgRyqZ6Q/edit?usp=sharing)
+
 ## Next Steps
 
 [View the backlog on Trello board](https://trello.com/b/97UdxPgj/ga-sei-unit-2-project-deep-sky)
-
-## Credits
-
-### Software
-
-<h4 id="npm-package-crypto-js">CryptoJS</h4>
-
-[npm package](https://www.npmjs.com/package/crypto-js)
-
-[License](https://github.com/brix/crypto-js/blob/develop/LICENSE) used under [The MIT License (MIT)](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2009-2013 Jeff Mott  
-Copyright (c) 2013-2016 Evan Vosberg
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-  
